@@ -1,0 +1,1 @@
+package xyz.neolith.wall.constants;/** * @author sunlggggg * @date 2016/12/22 */public interface ConfigConsts {}
