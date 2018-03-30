@@ -118,7 +118,7 @@ CREATE TABLE `statisticsresult` (
 -- ----------------------------
 -- Table structure for t_user
 -- ----------------------------
-DROP TABLE IF EXISTS `t_user`;
+DROP TABLE IF EXISTS user;
 CREATE TABLE `t_user` (
   `id` bigint(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,

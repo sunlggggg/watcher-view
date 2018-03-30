@@ -13,7 +13,13 @@ public class WallApplication {
 
     @Bean
     public WebMvcConfigurer corsConfigurer() {
-        return new WebMvcConfigurerAdapter() {
+        return new WebMvcConfigurer() {
+            /**
+             * Configure cross origin requests processing.
+             *
+             * @param registry
+             * @since 4.2
+             */
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**").allowedOrigins("*")
