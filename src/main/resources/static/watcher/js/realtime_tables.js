@@ -1,7 +1,7 @@
 var state = ['success', 'active', 'info', 'warning', 'danger'];
 var clnames = [
-    '源IP',
-    '访问次数',
+    'Source IP',
+    'Access Count',
 ];
 const clvalues = [
     [0, 1, 4, 2],//from state
@@ -40,19 +40,19 @@ function buildTable(type) {
         clvalues[2] = data.count;
         switch (type) {
             case "originalSrcIp":
-                clnames = ['源IP', '访问次数',];
+                clnames = ['Source IP', 'Access Count',];
                 createTable('tablesrcip', clnames, clvalues);
                 break;
             case "originalSrcPort":
-                clnames = ['源端口', '访问次数',];
+                clnames = ['Source Port', 'Access Count',];
                 createTable('tablesrcport', clnames, clvalues);
                 break
             case "originalDestIp":
-                clnames = ['目的IP', '访问次数',];
+                clnames = ['Dest IP', 'Access Count',];
                 createTable('tabledestip', clnames, clvalues);
                 break;
             case "originalDestPort":
-                clnames = ['目的端口', '访问次数',];
+                clnames = ['Dest Port', 'Access Count',];
                 createTable('tabledestport', clnames, clvalues);
                 break;
         }

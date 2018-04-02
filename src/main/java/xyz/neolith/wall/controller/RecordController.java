@@ -37,10 +37,11 @@ public class RecordController {
     @PostMapping(value = "/update" )
     public String updateRecord( @RequestBody Map<String,String> map  ) {
         //TODO 权限控制
-        recordService.save(new Record(new Date(), map.get("title"), map.get("recordInfo"),0L));
+        Record record = new Record();
+        record.setId(Long.parseLong(map.get("id")));
+        record.setTitle(map.get("title"));
+        record.setRecordInfo(map.get("recordInfo"));
+        recordService.update(record);
         return "success";
     }
-
-
-
 }

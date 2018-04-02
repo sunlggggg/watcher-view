@@ -40,11 +40,11 @@ function buildTable(type) {
         clvalues[2] = data.count;
         switch (type) {
             case "originalSrcIp":
-                clnames = ['源IP', '访问次数',];
+                clnames = ['Source IP', 'Access Count',];
                 createTable('historySrcIp', clnames, clvalues);
                 break;
             case "originalDestIp":
-                clnames = ['目的IP', '访问次数',];
+                clnames = ['Dest IP', 'Access Count',];
                 createTable('historyDestIp', clnames, clvalues);
                 break;
         }

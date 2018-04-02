@@ -1,8 +1,8 @@
 const state = ['success', 'active', 'info', 'warning', 'danger'];
 let clnames = [
-    '日志标题',
-    '创建者',
-    '创建时间',
+    'Record Title',
+    'Creator',
+    'Create Time',
     '',
 ];
 let clvalues = [[], [], [],[],[],];
@@ -41,9 +41,9 @@ function buildTable(pageNum) {
     // clvalues[0] = [0, 12, 2, 1];
     // createTable('recordTable', clnames, clvalues);
     clnames = [
-        '日志标题',
-        '创建者',
-        '创建时间',
+        'Record Title',
+        'Creator',
+        'Create Time',
         '',
     ];
     clvalues = [[], [], [],[],[],];
@@ -67,6 +67,6 @@ buildTable(1);
 
 
 function recordDetail(i) {
-    window.location.href=`dashboard-recorddetail.html?title=${clvalues[0][i]}&recordInfo=${clvalues[2][i]}`;
+    window.location.href=`dashboard-recorddetail.html?title=${clvalues[0][i]}&recordInfo=${clvalues[2][i]}&id=${clvalues[3][i]}`;
     console.log($(this).attr("class"))
 }

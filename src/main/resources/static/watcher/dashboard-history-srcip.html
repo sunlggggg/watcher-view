@@ -26,11 +26,11 @@
                     <li class="active">
                         <a href="dashboard-history-port.html" class="md-assessment">History</a>
                     </li>
+                    <!--<li>-->
+                        <!--<a href="#" class="md-info">Alarm</a>-->
+                    <!--</li>-->
                     <li>
-                        <a href="#" class="md-info">Alarm</a>
-                    </li>
-                    <li>
-                        <a href="#" class="md-group-work">Collection</a>
+                        <a href="dashboard-collection.html" class="md-group-work">Collection</a>
                     </li>
                     <li>
                         <a href="dashboard-record.html" class="md-edit">Info</a>
@@ -46,14 +46,14 @@
         <div class="cm-flex">
             <h1>History</h1>
         </div>
-        <div class="dropdown pull-right">
-            <button class="btn btn-midnight md-notifications-white">
-                <span class="label label-danger">23</span>
-            </button>
-            <div class="popover cm-popover bottom">
-                <div class="arrow"></div>
-            </div>
-        </div>
+        <!--<div class="dropdown pull-right">-->
+            <!--<button class="btn btn-midnight md-notifications-white">-->
+                <!--<span class="label label-danger">23</span>-->
+            <!--</button>-->
+            <!--<div class="popover cm-popover bottom">-->
+                <!--<div class="arrow"></div>-->
+            <!--</div>-->
+        <!--</div>-->
         <div class="dropdown pull-right">
             <button class="btn btn-midnight md-account-circle-white" data-toggle="dropdown"></button>
             <ul class="dropdown-menu">
@@ -71,9 +71,9 @@
         <div class="cm-flex">
             <div class="nav-tabs-container">
                 <ul class="nav nav-tabs">
-                    <li><a href="dashboard-history-port.html">端口统计值/天</a></li>
-                    <li class="active"><a href="dashboard-history-srcip.html">源IP统计/天</a></li>
-                    <li><a href="dashboard-history-destip.html">目的IP统计/天</a></li>
+                    <li ><a href="dashboard-history-port.html">Port/Day</a></li>
+                    <li class="active"  ><a href="dashboard-history-srcip.html">Source IP/Day</a></li>
+                    <li  ><a href="dashboard-history-destip.html">Dest IP/Day</a></li>
                 </ul>
             </div>
         </div>
@@ -87,7 +87,7 @@
         <div class="row">
             <div class="col-sm-12">
                 <div class="panel panel-default">
-                    <div class="panel-heading">历史源IP</div>
+                    <div class="panel-heading">Historical Source IP</div>
                     <div id='historySrcIp'></div>
                     <div class="panel-body" style="margin-left:44%; argin-bottom: -30px">
                         <nav>

@@ -27,11 +27,11 @@
                     <li >
                         <a href="dashboard-history-port.html" class="md-assessment">History</a>
                     </li>
+                    <!--<li>-->
+                        <!--<a href="#" class="md-info">Alarm</a>-->
+                    <!--</li>-->
                     <li>
-                        <a href="#" class="md-info">Alarm</a>
-                    </li>
-                    <li>
-                        <a href="#" class="md-group-work">Collection</a>
+                        <a href="dashboard-collection.html" class="md-group-work">Collection</a>
                     </li>
                     <li class="active" >
                         <a href="dashboard-record.html" class="md-edit">Info</a>
@@ -47,14 +47,14 @@
         <div class="cm-flex">
             <h1>History</h1>
         </div>
-        <div class="dropdown pull-right">
-            <button class="btn btn-midnight md-notifications-white">
-                <span class="label label-danger">23</span>
-            </button>
-            <div class="popover cm-popover bottom">
-                <div class="arrow"></div>
-            </div>
-        </div>
+        <!--<div class="dropdown pull-right">-->
+            <!--<button class="btn btn-midnight md-notifications-white">-->
+                <!--<span class="label label-danger">23</span>-->
+            <!--</button>-->
+            <!--<div class="popover cm-popover bottom">-->
+                <!--<div class="arrow"></div>-->
+            <!--</div>-->
+        <!--</div>-->
         <div class="dropdown pull-right">
             <button class="btn btn-midnight md-account-circle-white" data-toggle="dropdown"></button>
             <ul class="dropdown-menu">
@@ -72,8 +72,8 @@
         <div class="cm-flex">
             <div class="nav-tabs-container">
                 <ul class="nav nav-tabs">
-                    <li class="active"><a href="dashboard-record.html">安全日志</a></li>
-                    <li ><a href="dashboard-newrecord.html">新建日志</a></li>
+                    <li class="active"><a href="dashboard-record.html">Security Log</a></li>
+                    <li ><a href="dashboard-newrecord.html">Create Log</a></li>
                 </ul>
             </div>
         </div>
@@ -86,16 +86,16 @@
     <div class="container-fluid">
         <div id = "firstPage" class="alert alert-info" role="alert" style="display:none; margin-bottom:0">
             <i class="fa fa-fw fa-info-circle">
-            </i>&nbsp&nbsp&nbsp&nbsp这已经是第一页
+            </i>&nbsp&nbsp&nbsp&nbspThis is the first page.
         </div>
         <div id = "finalPage" class="alert alert-info" role="alert" style="display:none; margin-bottom:0">
             <i class="fa fa-fw fa-info-circle">
-            </i>&nbsp&nbsp&nbsp&nbsp这已经是最后一页
+            </i>&nbsp&nbsp&nbsp&nbspThis is the last page.
         </div>
         <div class="row">
             <div class="col-sm-12">
                 <div id = "recordList" class="panel panel-default">
-                    <div class="panel-heading">日志列表</div>
+                    <div class="panel-heading">Security Log List</div>
                     <div id='recordTable'></div>
                     <div class="panel-body" style="margin-left:44%; argin-bottom: -30px">
                         <nav>

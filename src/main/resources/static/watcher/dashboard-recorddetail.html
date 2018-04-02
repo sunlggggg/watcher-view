@@ -27,11 +27,11 @@
                     <li>
                         <a href="dashboard-history-port.html" class="md-assessment">History</a>
                     </li>
+                    <!--<li>-->
+                        <!--<a href="#" class="md-info">Alarm</a>-->
+                    <!--</li>-->
                     <li>
-                        <a href="#" class="md-info">Alarm</a>
-                    </li>
-                    <li>
-                        <a href="#" class="md-group-work">Collection</a>
+                        <a href="dashboard-collection.html" class="md-group-work">Collection</a>
                     </li>
                     <li class="active">
                         <a href="dashboard-record.html" class="md-edit">Info</a>
@@ -47,14 +47,14 @@
         <div class="cm-flex">
             <h1>History</h1>
         </div>
-        <div class="dropdown pull-right">
-            <button class="btn btn-midnight md-notifications-white">
-                <span class="label label-danger">23</span>
-            </button>
-            <div class="popover cm-popover bottom">
-                <div class="arrow"></div>
-            </div>
-        </div>
+        <!--<div class="dropdown pull-right">-->
+            <!--<button class="btn btn-midnight md-notifications-white">-->
+                <!--<span class="label label-danger">23</span>-->
+            <!--</button>-->
+            <!--<div class="popover cm-popover bottom">-->
+                <!--<div class="arrow"></div>-->
+            <!--</div>-->
+        <!--</div>-->
         <div class="dropdown pull-right">
             <button class="btn btn-midnight md-account-circle-white" data-toggle="dropdown"></button>
             <ul class="dropdown-menu">
@@ -72,9 +72,9 @@
         <div class="cm-flex">
             <div class="nav-tabs-container">
                 <ul class="nav nav-tabs">
-                    <li><a href="dashboard-record.html">安全日志</a></li>
-                    <li ><a href="dashboard-newrecord.html">新建日志</a></li>
-                    <li class="active"><a href="dashboard-recorddetail.html">日志详情</a></li>
+                    <li><a href="dashboard-record.html">Security Log</a></li>
+                    <li ><a href="dashboard-newrecord.html">Create Log</a></li>
+                    <li class="active"><a href="dashboard-recorddetail.html">Log Detail</a></li>
                 </ul>
             </div>
         </div>
@@ -83,10 +83,10 @@
 <div id="global" style="margin-top: 50px">
     <div class="container-fluid">
         <div class="panel panel-default">
-            <div class="panel-heading">日志详情</div>
-            <div id = "submitSuccess" class="alert alert-info" role="alert" style="display:none; margin-bottom:0">
+            <div class="panel-heading">Log Detail</div>
+            <div id = "ModifySuccess" class="alert alert-info" role="alert" style="display:none; margin-bottom:0">
                 <i class="fa fa-fw fa-info-circle">
-                </i>&nbsp&nbsp&nbsp&nbsp修改成功
+                </i>&nbsp&nbsp&nbsp&nbspModify success
             </div>
 
             <div class="panel-body">
@@ -97,7 +97,7 @@
                 <label>Content</label>
                 <div id="summernote"></div>
                 <div class="form-group text-right" style="margin-top:20px">
-                    <button type="submit" onclick="submitRecord(false);" class="btn btn-primary">提交修改</button>
+                    <button type="submit" onclick="submitRecord(false);" class="btn btn-primary">Modify</button>
                 </div>
             </div>
         </div>

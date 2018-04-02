@@ -102,7 +102,7 @@ const generateAccessFlowSpline = function() {
                 }
                 if (needRebuild) {
                     console.log("accessFlowSpline ReBuild");
-                    activeData[0] = '过去2分钟';
+                    activeData[0] = 'last 2 minutes';
                     for (let i = 1; i <= 60; i++) {
                         activeData[i] = data.activeData[60 - i];//传过来的数据时间上倒置
                     }

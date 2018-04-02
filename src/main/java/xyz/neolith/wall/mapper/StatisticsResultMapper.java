@@ -18,6 +18,7 @@ import java.util.List;
 public interface StatisticsResultMapper {
     @Select("select * from StatisticsResult where endTime = #{endTime} and type = #{type} order by count desc limit #{size}")
     List<StatisticsResult> list(@Param("endTime") Date endTime, @Param("type") StatisticsType type , @Param("size") Integer size );
+
     @Select("select * from StatisticsResult where id = (select MAX(id) from statisticsresult );")
     StatisticsResult getLast();
 }
