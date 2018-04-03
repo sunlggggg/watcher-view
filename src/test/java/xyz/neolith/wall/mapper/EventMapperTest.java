@@ -6,20 +6,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import static org.junit.Assert.*;
+
 /**
  * @author sunlggggg
- * @date 2018/3/31
+ * @date 2018/4/3
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class IPCollectionMapperTest {
-
+public class EventMapperTest {
     @Autowired
-    private IPCollectionMapper ipCollectionMapper;
+    private EventMapper eventMapper;
 
     @Test
-    public void list() {
-        System.out.println(ipCollectionMapper.list(2,7).size());
+    public void list1() {
     }
-
 }

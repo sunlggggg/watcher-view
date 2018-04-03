@@ -12,7 +12,7 @@ import java.util.List;
  * @date 2018/3/26
  */
 @Service("accessFlowResult")
-public class AccessFlowResultImpl implements AccessFlowResultService {
+public class AccessFlowResultServiceImpl implements AccessFlowResultService {
     @Autowired
     private AccessFlowResultMapper accessFlowResultMapper;
     @Override

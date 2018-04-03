@@ -30,7 +30,7 @@ public class StatisticsController {
      * @return {state:[],clvalues:{}}
      */
     @RequestMapping(value = "/list/{type}", method = RequestMethod.GET)
-    public String postUser(@PathVariable String type) {
+    public String getListByType(@PathVariable String type) {
         List<StatisticsResult> alStatisticResultByType = statisticsResultService.list(StatisticsType.valueOf(type), 10);
         //根据
         ArrayList alStatus = new ArrayList();
@@ -64,4 +64,6 @@ public class StatisticsController {
         ans.put("count", alCount);
         return gson.toJson(ans);
     }
+
+
 }

@@ -17,8 +17,6 @@ import java.util.*;
 public class UserController {
 
     @Autowired
-    private UserMapper userMapper;
-    @Autowired
     private UserService userService;
 
     // 创建线程安全的Map

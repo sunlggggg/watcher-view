@@ -22,8 +22,8 @@ public class RecordServiceImpl implements RecordService {
     @Override
     @Transactional
     public List<Record> list(Integer pageNum, Integer itemNum) {
-        int start = itemNum*(pageNum - 1);
-        return recordMapper.list(start, itemNum);
+        int startId = itemNum*(pageNum - 1);//该页开始ID
+        return recordMapper.list(startId, itemNum);
     }
 
     @Override

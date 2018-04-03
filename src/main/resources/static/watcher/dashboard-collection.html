@@ -25,7 +25,7 @@
                         <a href="dashboard-realtime.html" class="md-access-time">RealTime</a>
                     </li>
                     <li >
-                        <a href="dashboard-history-port.html" class="md-assessment">History</a>
+                        <a  href="dashboard-event.html" class="md-assessment">Event</a>
                     </li>
                     <!--<li>-->
                         <!--<a href="#" class="md-info">Alarm</a>-->
@@ -72,7 +72,7 @@
         <div class="cm-flex">
             <div class="nav-tabs-container">
                 <ul class="nav nav-tabs">
-                    <li class="active"><a href="#">Clustering Analysis</a></li>
+                    <li class="active"><a href="#">Association Analysis</a></li>
                     <!--<li ><a href="dashboard-newrecord.html">新建日志</a></li>-->
                 </ul>
             </div>
@@ -84,10 +84,37 @@
         margin: 5px
     }</style>
     <div class="container-fluid">
+
         <div class="row">
+            <div id = "firstPage" class="alert alert-info" role="alert" style="display:none; margin-bottom:0">
+                <i class="fa fa-fw fa-info-circle">
+                </i>&nbsp&nbsp&nbsp&nbspThis is the first page.
+            </div>
+            <div id = "finalPage" class="alert alert-info" role="alert" style="display:none; margin-bottom:0">
+                <i class="fa fa-fw fa-info-circle">
+                </i>&nbsp&nbsp&nbsp&nbspThis is the last page.
+            </div>
             <div class="col-sm-12">
-                <div id = "recordList" class="panel panel-default">
-                    <div class="panel-heading">Clustering Result</div>
+                <div  class="panel panel-default">
+                    <div class="panel-heading">Association Result List</div>
+                    <div id='associationResult'></div>
+                    <div class="panel-body" style="margin-left:44%; argin-bottom: -30px">
+                        <nav>
+                            <ul class="pagination">
+                                <li>
+                                    <a id = "lastPage" onclick="lastPage();" href="#">
+                                        <span><i class="fa fa-angle-left"></i></span>
+                                    </a>
+                                </li>
+                                <li><a id = "nowPage" href="#">1</a></li>
+                                <li>
+                                    <a id="nextPage" onclick="nextPage();" href="#">
+                                        <span><i class="fa fa-angle-right"></i></span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
                 </div>
             </div>
         </div>
@@ -105,7 +132,6 @@
 <script src="assets/js/clearmin.min.js"></script>
 <script src="assets/js/summernote.min.js"></script>
 <script src="assets/js/demo/notepad.js"></script>
-<script src="js/record.js"></script>
-<script src="js/recordtable.js"></script>
+<script src="js/association-result.js"></script>
 </body>
 </html>
