@@ -13,7 +13,7 @@ import xyz.neolith.wall.service.IPCollectionService;
  * @date 2018/4/3
  */
 @RestController
-@RequestMapping("/association")
+@RequestMapping("/api/association")
 public class IPCollectionController {
 
     private Gson gson = new Gson();

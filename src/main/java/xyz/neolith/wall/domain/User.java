@@ -2,18 +2,20 @@ package xyz.neolith.wall.domain;
 
 public class User {
 
-    public User() {}
-
-    public User(String name, String password, String phone) {
-        this.name = name;
-        this.password = password;
-        this.phone = phone;
+    public User() {
     }
 
+    public User(String name, String password, String email) {
+        this.email = email;
+        this.name = name;
+        this.password = password;
+    }
+
+
     private Long id;
+    private String email;
     private String name;
     private String password;
-    private String phone;
 
     public Long getId() {
         return id;
@@ -39,11 +41,22 @@ public class User {
         this.password = password;
     }
 
-    public String getPhone() {
-        return phone;
+    public String getEmail() {
+        return email;
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", email='" + email + '\'' +
+                ", name='" + name + '\'' +
+                ", password='" + password + '\'' +
+                '}';
     }
 }

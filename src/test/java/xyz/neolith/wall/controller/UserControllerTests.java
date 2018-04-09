@@ -50,9 +50,9 @@ public class UserControllerTests {
         Map<String, Object> map = new HashMap<>();
         map.put("name", "sunlg");
         map.put("password", "123456");
-        map.put("phone", "17816869355");
+        map.put("email", "17816869355");
 
-        MvcResult result = mockMvc.perform(post("/users/").contentType(MediaType.APPLICATION_JSON).content(JSONObject.toJSONString(map)))
+        MvcResult result = mockMvc.perform(post("/user/").contentType(MediaType.APPLICATION_JSON).content(JSONObject.toJSONString(map)))
                 .andExpect(status().isOk())// 模拟向testRest发送get请求
 //                .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))// 预期返回值的媒体类型text/plain;charset=UTF-8
                 .andReturn();// 返回执行请求的结果

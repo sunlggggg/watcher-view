@@ -17,7 +17,7 @@ import java.util.Map;
  */
 
 @RestController
-@RequestMapping("/statistics")
+@RequestMapping("/api/statistics")
 public class StatisticsController {
 
     @Autowired

@@ -33,8 +33,14 @@ var createTable = function (tableid, clnames, clvalues) {
         '</table>\n';
     tc.innerHTML = tableHtml;
 }
+
 function buildTable(type) {
-    $.getJSON(`http://localhost:8080/history/list/${type}`, function (data) {
+    $.ajax({
+        url: `http://localhost:8080/api/history/list/${type}`,
+        headers: {'Authorization': $.session.get('token')},
+        method: 'GET'
+    }).always(function (data, status, xhr) {
+        data = JSON.parse(data);
         clvalues[0] = data.status;
         clvalues[1] = data.ip;
         clvalues[2] = data.count;
@@ -50,5 +56,6 @@ function buildTable(type) {
         }
     });
 }
+
 buildTable("originalSrcIp");
 buildTable("originalDestIp");

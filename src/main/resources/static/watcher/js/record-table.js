@@ -1,9 +1,9 @@
 const state = ['success', 'active', 'info', 'warning', 'danger'];
 let clnames = [
-    'Record Title',
-    'Creator',
-    'Create Time',
-    '',
+    '日志标题',
+    '创建者',
+    '创建时间',
+    '操作',
 ];
 let clvalues = [[], [], [],[],[],];
 let createTable = function (tableid, clnames, clvalues) {
@@ -40,14 +40,19 @@ function buildTable(pageNum) {
     // clvalues[0] = ['121.000.121', '121.12.121', '124.121.212', '12'];
     // clvalues[0] = [0, 12, 2, 1];
     // createTable('recordTable', clnames, clvalues);
-    clnames = [
-        'Record Title',
-        'Creator',
-        'Create Time',
-        '',
+    let clnames = [
+        '日志标题',
+        '创建者',
+        '创建时间',
+        '操作',
     ];
     clvalues = [[], [], [],[],[],];
-    $.getJSON(`http://localhost:8080/record/list/${pageNum}&${6}`, function (data) {
+    $.ajax({
+        url: `http://localhost:8080/api/record/list/${pageNum}&${6}`,
+        headers: {'Authorization': $.session.get('token')},
+        method: 'GET'
+    }).always(function (data, status, xhr) {
+        data = JSON.parse(data);
         const pageinfo = data.pageInfo;
         console.log("pageinfo", pageinfo);
         for(let i = 0 ; i <pageinfo.length ; i++ ){
@@ -56,7 +61,7 @@ function buildTable(pageNum) {
             clvalues[1][i] = "Sun LiGang";
             clvalues[2][i] = pageinfo[i].recordInfo;
             clvalues[3][i] = pageinfo[i].id;
-            clvalues[4][i] = pageinfo[i].createTime;
+            clvalues[4][i] = dateFormat(pageinfo[i].createTime);
         }
         createTable('recordTable', clnames, clvalues);
 

@@ -9,7 +9,7 @@
     <link rel="stylesheet" type="text/css" href="assets/css/small-n-flat.css">
     <link rel="stylesheet" type="text/css" href="assets/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="assets/css/summernote.css">
-    <title>Watcher</title>
+    <title>Watcher 防火墙日志分析系统</title>
 </head>
 <body class="cm-no-transition cm-2-navbar">
 <div id="cm-menu">
@@ -22,16 +22,16 @@
             <div id="cm-menu-scroller">
                 <ul class="cm-menu-items">
                     <li>
-                        <a href="dashboard-realtime.html" class="md-access-time">RealTime</a>
+                        <a href="dashboard-realtime.html" class="md-access-time">实时分析</a>
                     </li>
-                    <li class="active" >
-                        <a  href="dashboard-event.html" class="md-assessment">Event</a>
+                    <li class="active">
+                        <a href="dashboard-event.html" class="md-assessment">事件判定</a>
                     </li>
                     <li>
-                        <a href="dashboard-collection.html" class="md-group-work">Collection</a>
+                        <a href="dashboard-collection.html" class="md-group-work">关联分析</a>
                     </li>
-                    <li  >
-                        <a href="dashboard-record.html" class="md-edit">Info</a>
+                    <li>
+                        <a href="dashboard-record.html" class="md-edit">安全日志</a>
                     </li>
                 </ul>
             </div>
@@ -45,14 +45,6 @@
         <div class="cm-flex">
             <h1>History</h1>
         </div>
-        <!--<div class="dropdown pull-right">-->
-            <!--<button class="btn btn-midnight md-notifications-white">-->
-                <!--<span class="label label-danger">23</span>-->
-            <!--</button>-->
-            <!--<div class="popover cm-popover bottom">-->
-                <!--<div class="arrow"></div>-->
-            <!--</div>-->
-        <!--</div>-->
         <div class="dropdown pull-right">
             <button class="btn btn-midnight md-account-circle-white" data-toggle="dropdown"></button>
             <ul class="dropdown-menu">
@@ -60,7 +52,7 @@
                     <a style="cursor:default;"><strong>Sun LiGang</strong></a>
                 </li>
                 <li>
-                    <a href="login.html"><i class="fa fa-fw fa-sign-out"></i> Sign out</a>
+                    <a href="login/login.html"><i class="fa fa-fw fa-sign-out"></i>退出</a>
                 </li>
             </ul>
         </div>
@@ -69,8 +61,8 @@
         <div class="cm-flex">
             <div class="nav-tabs-container">
                 <ul class="nav nav-tabs">
-                    <li ><a href="dashboard-event.html">Event List</a></li>
-                    <li class="active"><a href="dashboard-eventdetail.html">Event Detail</a></li>
+                    <li><a href="dashboard-event.html">事件列表</a></li>
+                    <li class="active"><a href="dashboard-eventdetail.html">事件详情</a></li>
                 </ul>
             </div>
         </div>
@@ -86,35 +78,19 @@
 
             <div class="col-sm-12">
                 <div class="panel panel-default">
-                    <div class="panel-heading">Event Detail</div>
+                    <div class="panel-heading">事件详情</div>
                     <div id='eventDetailTable'></div>
-                    <!--<div class="panel-body" style="margin-left:44%; argin-bottom: -30px">-->
-                        <!--<nav>-->
-                            <!--<ul class="pagination">-->
-                                <!--<li>-->
-                                    <!--<a id = "lastPage" onclick="lastPage()" href="#">-->
-                                        <!--<span><i class="fa fa-angle-left"></i></span>-->
-                                    <!--</a>-->
-                                <!--</li>-->
-                                <!--<li><a id = "nowPage" href="#">1</a></li>-->
-                                <!--<li>-->
-                                    <!--<a id="nextPage" onclick="nextPage()" href="#">-->
-                                        <!--<span><i class="fa fa-angle-right"></i></span>-->
-                                    <!--</a>-->
-                                <!--</li>-->
-                            <!--</ul>-->
-                        <!--</nav>-->
-                    <!--</div>-->
                 </div>
             </div>
         </div>
     </div>
     <footer class="cm-footer">
         <span class="pull-left">Connected as Sun LiGang</span>
-        <span class="pull-right">&copy; Watcher</span>
+        <span class="pull-right">&copy; Watcher 防火墙日志分析系统</span>
     </footer>
 </div>
 <script src="assets/js/lib/jquery-2.1.3.min.js"></script>
+<script src="../src/js/lib/jquery.session.js"></script>
 <script src="assets/js/jquery.mousewheel.min.js"></script>
 <script src="assets/js/jquery.cookie.min.js"></script>
 <script src="assets/js/fastclick.min.js"></script>
@@ -122,6 +98,7 @@
 <script src="assets/js/clearmin.min.js"></script>
 <script src="assets/js/summernote.min.js"></script>
 <script src="assets/js/demo/notepad.js"></script>
-<script src="js/eventDetail.js"></script>
+<script src="js/date-utils.js"></script>
+<script src="js/event-detail.js"></script>
 </body>
 </html>

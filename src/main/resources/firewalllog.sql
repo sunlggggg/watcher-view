@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50713
 File Encoding         : 65001
 
-Date: 2018-03-26 19:20:29
+Date: 2018-04-09 14:45:36
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -24,7 +24,7 @@ CREATE TABLE `accessflowresult` (
   `endTime` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP COMMENT 'endtime是从endtime-1秒到endtime的记录条数',
   `count` int(11) NOT NULL COMMENT '该秒内的记录条数',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=425 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=1462 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for event
@@ -35,9 +35,10 @@ CREATE TABLE `event` (
   `startTime` datetime DEFAULT NULL,
   `lastTime` datetime DEFAULT NULL,
   `isFinished` tinyint(1) DEFAULT NULL,
-  `type` enum('sameSrcAttack','sameDestAttack','sensitivePortAccess') DEFAULT NULL,
+  `attackType` enum('sameSrcAttack','sameDestAttack','sensitivePortAccess') DEFAULT NULL,
+  `type` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=345 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=1710 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Table structure for fwlog
@@ -61,7 +62,34 @@ CREATE TABLE `fwlog` (
   `safefymargin` varchar(30) DEFAULT NULL,
   `aciton` int(1) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=240784 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=316993 DEFAULT CHARSET=latin1;
+
+-- ----------------------------
+-- Table structure for ipcollection
+-- ----------------------------
+DROP TABLE IF EXISTS `ipcollection`;
+CREATE TABLE `ipcollection` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `collection` text,
+  `startTime` datetime DEFAULT NULL,
+  `endTime` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `table_name_id_uindex` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Table structure for record
+-- ----------------------------
+DROP TABLE IF EXISTS `record`;
+CREATE TABLE `record` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `userid` bigint(20) NOT NULL,
+  `createTime` datetime NOT NULL,
+  `title` varchar(20) NOT NULL,
+  `recordinfo` text,
+  PRIMARY KEY (`id`),
+  KEY `userid` (`userid`)
+) ENGINE=InnoDB AUTO_INCREMENT=58 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for relation
@@ -86,13 +114,11 @@ CREATE TABLE `sensitiveport` (
   PRIMARY KEY (`port`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-INSERT INTO `sensitiveport` VALUES ('23', '疑似请求TELNENT');
-
 -- ----------------------------
--- Table structure for statisticslog
+-- Table structure for statisticsresult
 -- ----------------------------
-DROP TABLE IF EXISTS `statisticslog`;
-CREATE TABLE `statisticslog` (
+DROP TABLE IF EXISTS `statisticsresult`;
+CREATE TABLE `statisticsresult` (
   `startTime` datetime NOT NULL COMMENT '该此统计开始时间， 源IP对应的访问次数',
   `statisticsValue` varchar(15) NOT NULL,
   `count` int(7) NOT NULL DEFAULT '0',
@@ -102,29 +128,24 @@ CREATE TABLE `statisticslog` (
   `abnormal` bit(1) NOT NULL DEFAULT b'0',
   PRIMARY KEY (`id`),
   KEY `originalSrcIp` (`statisticsValue`,`startTime`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=47757 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
--- Table structure for statisticsresult
+-- Table structure for user
 -- ----------------------------
-DROP TABLE IF EXISTS `statisticsresult`;
-CREATE TABLE `statisticsresult` (
-  `id` int(10) NOT NULL,
-  `endTime` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP COMMENT '统计结束时间',
-  `startTime` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- ----------------------------
--- Table structure for t_user
--- ----------------------------
-DROP TABLE IF EXISTS user;
-CREATE TABLE `t_user` (
+DROP TABLE IF EXISTS `user`;
+CREATE TABLE `user` (
   `id` bigint(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
-  `phone` varchar(255) NOT NULL,
+  `email` varchar(255) DEFAULT NULL COMMENT '注册邮箱',
   PRIMARY KEY (`id`),
   UNIQUE KEY `t_user_id_uindex` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- View structure for allfwlogsinoneevent
+-- ----------------------------
+DROP VIEW IF EXISTS `allfwlogsinoneevent`;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER  VIEW `allfwlogsinoneevent` AS select relation.eventId ,fwlog.id, fwlog.originalSrcIp, fwlog.originalSrcPort, fwlog.originalDestIP, fwlog.originalDestPort, fwlog.timestamp from fwlog,relation where fwlog.id = relation.fwlogId ;
 SET FOREIGN_KEY_CHECKS=1;

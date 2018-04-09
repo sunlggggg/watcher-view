@@ -14,7 +14,7 @@ import xyz.neolith.wall.service.IPCollectionService;
  * @date 2018/4/3
  */
 @RestController
-@RequestMapping("/event")
+@RequestMapping("/api/event")
 public class EventController {
 
     private Gson gson = new Gson();

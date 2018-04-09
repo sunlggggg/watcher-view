@@ -1,6 +1,5 @@
 package xyz.neolith.wall.service;
 
-import org.springframework.stereotype.Service;
 import xyz.neolith.wall.domain.User;
 
 /**
@@ -9,5 +8,7 @@ import xyz.neolith.wall.domain.User;
  */
 
 public interface UserService {
-    int save(User user);
+    int register(User user);
+
+    boolean login(User user);
 }

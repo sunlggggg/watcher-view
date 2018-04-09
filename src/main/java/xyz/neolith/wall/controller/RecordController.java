@@ -14,7 +14,7 @@ import java.util.*;
  * @date 2018/3/29
  */
 @RestController
-@RequestMapping("/record")
+@RequestMapping("/api/record")
 public class RecordController {
     @Autowired
     private RecordService recordService;

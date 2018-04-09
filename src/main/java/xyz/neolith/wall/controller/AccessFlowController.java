@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import xyz.neolith.wall.service.AccessFlowResultService;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -14,6 +15,7 @@ import java.util.Map;
  * @date 2018/3/25
  */
 @RestController
+@RequestMapping("/api")
 public class AccessFlowController {
     private static Gson gson = new Gson();
 
@@ -27,13 +29,14 @@ public class AccessFlowController {
 
     /**
      * 返回60个整数
+     *
      * @return {activeData:[]}
      */
     @RequestMapping(value = "/accessFlow")
     public String accessFlow() {
         Map map = new HashMap<>();
         List lastData = accessFlowResultService.list(60);
-        for(int i = lastData.size() ; i < 60 ; i++ ){
+        for (int i = lastData.size(); i < 60; i++) {
             lastData.add(0);
         }
         map.put("activeData", lastData);

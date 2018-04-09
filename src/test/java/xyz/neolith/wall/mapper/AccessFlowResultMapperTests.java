@@ -8,8 +8,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
 import xyz.neolith.wall.domain.User;
-import xyz.neolith.wall.mapper.AccessFlowResultMapper;
-import xyz.neolith.wall.mapper.UserMapper;
 
 /**
  * @author sunlggggg
@@ -33,7 +31,7 @@ public class AccessFlowResultMapperTests {
     @Test
     public void testInset() {
         userMapper.insert("winterchen", "123456", "12345678910");
-        User u = userMapper.findUserByPhone("12345678910");
+        User u = userMapper.findUserByEmail("12345678910");
         Assert.assertEquals("winterchen", u.getName());
     }
 
@@ -43,7 +41,7 @@ public class AccessFlowResultMapperTests {
         userMapper.insert("张三", "123456", "18600000000");
         int a = 1/0;
         userMapper.insert("李四", "123456", "13500000000");
-        User u = userMapper.findUserByPhone("12345678910");
+        User u = userMapper.findUserByEmail("12345678910");
         Assert.assertEquals("winterchen", u.getName());
     }
 

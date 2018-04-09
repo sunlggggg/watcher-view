@@ -1,7 +1,7 @@
 var state = ['success', 'active', 'info', 'warning', 'danger'];
 var clnames = [
-    'Source IP',
-    'Access Count',
+    '源IP',
+    '访问次数',
 ];
 const clvalues = [
     [0, 1, 4, 2],//from state
@@ -33,31 +33,38 @@ var createTable = function (tableid, clnames, clvalues) {
         '</table>\n';
     tc.innerHTML = tableHtml;
 }
+
 function buildTable(type) {
-    $.getJSON("http://localhost:8080/statistics/list/"+type, function (data) {
+    $.ajax({
+        url: "http://localhost:8080/api/statistics/list/" + type,
+        headers: {'Authorization': $.session.get('token')},
+        method: 'GET'
+    }).always(function (data, status, xhr) {
+        data = JSON.parse(data);
         clvalues[0] = data.status;
         clvalues[1] = data.ip;
         clvalues[2] = data.count;
         switch (type) {
             case "originalSrcIp":
-                clnames = ['Source IP', 'Access Count',];
+                clnames = ['源IP', '访问次数',];
                 createTable('tablesrcip', clnames, clvalues);
                 break;
             case "originalSrcPort":
-                clnames = ['Source Port', 'Access Count',];
+                clnames = ['源端口', '访问次数',];
                 createTable('tablesrcport', clnames, clvalues);
                 break
             case "originalDestIp":
-                clnames = ['Dest IP', 'Access Count',];
+                clnames = ['目的IP', '访问次数',];
                 createTable('tabledestip', clnames, clvalues);
                 break;
             case "originalDestPort":
-                clnames = ['Dest Port', 'Access Count',];
+                clnames = ['目的端口', '访问次数',];
                 createTable('tabledestport', clnames, clvalues);
                 break;
         }
     });
 }
+
 buildTable("originalSrcIp");
 buildTable("originalSrcPort");
 buildTable("originalDestIp");

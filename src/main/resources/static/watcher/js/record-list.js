@@ -1,11 +1,9 @@
-function submitRecord(isNewRecord ) {
+function submitRecord(isNewRecord) {
     let title = $('#recordTitle').val();
     console.log(title);
     let recordinfo = document.getElementsByClassName("note-editable").item(0).innerHTML;
     console.log(recordinfo);
-
     let record = {};
-
     record.title = title;
     record.recordInfo = recordinfo;
     let requestData = JSON.stringify(record);
@@ -14,9 +12,10 @@ function submitRecord(isNewRecord ) {
         $(document).ready(function () {
             const res = $.ajax({
                 type: 'POST',
-                url: `http://localhost:8080/record/`,
+                url: `http://localhost:8080/api/record/`,
                 contentType: "application/json",
                 data: requestData,
+                headers: {'Authorization': $.session.get('token')},
                 success: successInfo,
             });
 
@@ -50,21 +49,22 @@ function submitRecord(isNewRecord ) {
             }, 50);
             return arr2;
         }
+
         let v = parseUrl();
         record.id = v[2].substr(3);
         let requestData = JSON.stringify(record);
         $(document).ready(function () {
             const res = $.ajax({
                 type: 'POST',
-                url: `http://localhost:8080/record/update`,
+                url: `http://localhost:8080/api/record/update`,
                 contentType: "application/json",
                 data: requestData,
+                headers: {'Authorization': $.session.get('token')},
                 success: successInfo,
             });
 
 
-
-            console.log("record", record );
+            console.log("record", record);
 
             function successInfo() {
                 if (res.responseText === "success") {
@@ -73,7 +73,7 @@ function submitRecord(isNewRecord ) {
                         $("#ModifySuccess").css("display", "none")
                     }, 2000);
                 }
-                window.location.href=`dashboard-recorddetail.html?title=${record.title}&recordInfo=${record.recordInfo}&id=${record.id}`;
+                window.location.href = `dashboard-recorddetail.html?title=${record.title}&recordInfo=${record.recordInfo}&id=${record.id}`;
             }
         });
     }
@@ -95,7 +95,12 @@ function lastPage() {
 function nextPage() {
     let pageNum = parseInt($("#nowPage").text());
     let nextItemNum;
-    $.getJSON(`http://localhost:8080/record/list/${pageNum + 1}&${6}`, function (data) {
+    $.ajax({
+        url: `http://localhost:8080/api/record/list/${pageNum + 1}&${6}`,
+        headers: {'Authorization': $.session.get('token')},
+        method: 'GET'
+    }).always(function (data, status, xhr) {
+        data = JSON.parse(data);
         nextItemNum = data.pageInfo.length;
         if (nextItemNum === 0) {
             $("#finalPage").css("display", "block")

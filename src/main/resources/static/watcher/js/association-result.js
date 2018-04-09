@@ -36,18 +36,24 @@ const createTable = function (tableid, clnames, clvalues) {
 };
 
 function buildTable(type) {
-    $.getJSON(`http://localhost:8080/association/list/1&6`, function (data) {
+
+    $.ajax({
+        url: 'http://localhost:8080/api/association/list/1&6',
+        headers: {'Authorization': $.session.get('token')},
+        method: 'GET'
+    }).always(function (data, status, xhr) {
+        data = JSON.parse(data);
         console.log("association result", data);
         for (let i = 0; i < data.length; i++) {
-            clvalues[1][i] = data[i].startTime;
-            clvalues[2][i] = data[i].endTime;
+            clvalues[1][i] = dateFormat(data[i].startTime);
+            clvalues[2][i] = dateFormat(data[i].endTime);
             clvalues[3][i] = data[i].collection;
         }
         // clvalues[0] = data.status;
         console.log("clvalues", clvalues);
         switch (type) {
             case "associationResult":
-                clnames = ['start time', 'end time', 'collection',];
+                clnames = ['开始时间', '结束时间', '频繁集合',];
                 createTable('associationResult', clnames, clvalues);
                 break;
         }
@@ -74,7 +80,12 @@ function lastPage() {
 function nextPage() {
     let pageNum = parseInt($("#nowPage").text());
     let nextItemNum;
-    $.getJSON(`http://localhost:8080/association/list/${pageNum + 1}&${6}`, function (data) {
+    $.ajax({
+        url: `http://localhost:8080/api/association/list/${pageNum + 1}&${6}`,
+        headers: {'Authorization': $.session.get('token')},
+        method: 'GET'
+    }).always(function (data, status, xhr) {
+        data = JSON.parse(data);
         nextItemNum = data.length;
         if (nextItemNum === 0) {
             $("#finalPage").css("display", "block")

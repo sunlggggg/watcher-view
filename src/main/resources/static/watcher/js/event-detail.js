@@ -1,9 +1,29 @@
+function parseUrl() {
+    let url = decodeURI(location.href);
+    console.log(url);
+    let i = url.indexOf('?');
+    if (i === -1) return;
+    let querystr = url.substr(i + 1);
+    let arr1 = querystr.split('&');
+    let arr2 = {};
+    for (i in arr1) {
+        arr2[i] = arr1[i];
+    }
+    return arr2;
+}
+
+let v = parseUrl();
+console.log(v);
+console.log("event id", v[0].substr(3));
+const eventId = v[0].substr(3);
+
 const state = ['success', 'active', 'info', 'warning', 'danger'];
 let clnames = [
-    'Record Title',
-    'Creator',
-    'Create Time',
-    '',
+    '时间戳',
+    '源IP',
+    '源端口',
+    '目的IP',
+    '目的端口',
 ];
 let clvalues = [[], [], [],[],[],];
 let createTable = function (tableid, clnames, clvalues) {
@@ -13,6 +33,7 @@ let createTable = function (tableid, clnames, clvalues) {
         '<th>' + clnames[1] + '</th>\n' +
         '<th>' + clnames[2] + '</th>\n' +
         '<th>' + clnames[3] + '</th>\n' +
+        '<th>' + clnames[4] + '</th>\n' +
         '</tr>\n' +
         '</thead>\n' +
         '<tbody>\n';
@@ -23,7 +44,8 @@ let createTable = function (tableid, clnames, clvalues) {
             '<td>' + clvalues[0][i] + '</td>\n' +
             '<td>' + clvalues[1][i] + '</td>\n' +
             '<td>' + clvalues[2][i] + '</td>\n' +
-            `<td > <button class="btn btn-block btn-primary" onclick="eventDetail(${i});">查看详情</button></td>\n` +
+            '<td>' + clvalues[3][i] + '</td>\n' +
+            '<td>' + clvalues[4][i] + '</td>\n' +
             '</tr>\n';
     }
     tableHtml +=
@@ -36,22 +58,24 @@ function buildTable(pageNum) {
     // clvalues[0] = ['121.000.121', '121.12.121', '124.121.212', '12'];
     // clvalues[0] = [0, 12, 2, 1];
     // createTable('recordTable', clnames, clvalues);
-    clnames = [
-        'Start Time',
-        'Ent Time',
-        'Event Type',
-        '',
-    ];
+
     clvalues = [[], [], [],[],[],];
-    $.getJSON(`http://localhost:8080/event/list/${pageNum}&${6}`, function (data) {
-        console.log("events ", data);
+    $.ajax({
+        url: `http://localhost:8080/api/event/list/allFwlogs/${eventId}`,
+        headers: {'Authorization': $.session.get('token')},
+        method: 'GET'
+    }).always(function (data, status, xhr) {
+        data = JSON.parse(data);
+        console.log("allFwlogs", data);
         for(let i = 0 ; i <data.length ; i++ ){
-            clvalues[0][i] = data[i].startTime;
-            clvalues[1][i] = data[i].lastTime;
-            clvalues[2][i] = data[i].attackType;
-            clvalues[3][i] = data[i].id;
+            clvalues[0][i] = dateFormat(data[i].timestamp);
+            clvalues[1][i] = data[i].originalSrcIp;
+            clvalues[2][i] = data[i].originalSrcPort;
+            clvalues[3][i] = data[i].originalDestIp;
+            clvalues[4][i] = data[i].originalDestPort;
         }
-        createTable('eventTable', clnames, clvalues);
+        createTable('eventDetailTable', clnames, clvalues);
+
     });
 }
 
@@ -82,7 +106,12 @@ function lastPage() {
 function nextPage() {
     let pageNum = parseInt($("#nowPage").text());
     let nextItemNum;
-    $.getJSON(`http://localhost:8080/event/list/${pageNum + 1}&${6}`, function (data) {
+    $.ajax({
+        url: `http://localhost:8080/api/event/list/${pageNum + 1}&${6}`,
+        headers: {'Authorization': $.session.get('token')},
+        method: 'GET'
+    }).always(function (data, status, xhr) {
+        data = JSON.parse(data);
         nextItemNum = data.length;
         if (nextItemNum === 0) {
             $("#finalPage").css("display", "block")
@@ -96,3 +125,10 @@ function nextPage() {
     });
 
 }
+
+
+
+
+
+
+

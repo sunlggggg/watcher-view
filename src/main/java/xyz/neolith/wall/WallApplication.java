@@ -2,6 +2,7 @@ package xyz.neolith.wall;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpHeaders;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
@@ -10,6 +11,15 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 
 @SpringBootApplication
 public class WallApplication {
+
+
+    @Bean
+    public FilterRegistrationBean jwtFilter() {
+        final FilterRegistrationBean registrationBean = new FilterRegistrationBean();
+        JwtAuthenticationFilter filter = new JwtAuthenticationFilter();
+        registrationBean.setFilter(filter);
+        return registrationBean;
+    }
 
     @Bean
     public WebMvcConfigurer corsConfigurer() {
