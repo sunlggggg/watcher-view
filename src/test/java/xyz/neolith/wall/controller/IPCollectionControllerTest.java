@@ -34,7 +34,7 @@ public class IPCollectionControllerTest {
     @Before
     public void setUp() throws Exception {
         mvc = MockMvcBuilders.standaloneSetup(new IPCollectionController()).build();
-    }
+}
 
     private MockMvc mockMvc; // 模拟MVC对象，通过MockMvcBuilders.webAppContextSetup(this.wac).build()初始化。
 
