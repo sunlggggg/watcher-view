@@ -1,12 +1,9 @@
 //Mar 29, 2018 2:13:07 AM
 //2018-3-29 2:13:07
 function dateFormat(inputStr) {
+    console.log(inputStr);
     let parts = inputStr.split(" ");
-
-    parts.forEach(function (item) {
-        console.log(item);
-    });
-
+    console.log("时间分割",parts);
     const month = {
         "Jan": 1,
         "Feb": 2,
@@ -27,9 +24,12 @@ function dateFormat(inputStr) {
     const year = parts[2];
 
     if (parts[4] === 'PM') {
+        console.log("PM");
         let hms = parts[3].split(":");
         let hour = hms[0];
+        hour = parseInt(hour);
         hour += 12;
+        console.log(hour);
         hour %= 24;
         hms[0] = hour;
         parts[3] = "";

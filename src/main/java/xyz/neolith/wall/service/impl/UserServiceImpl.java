@@ -21,7 +21,7 @@ public class UserServiceImpl implements UserService {
     @Transactional
     @Override
     public int register(User user) {
-        if (userMapper.findUserByEmail(user.getEmail()) != null) {
+        if (userMapper.findUserByEmail(user.getEmail()) == null) {
             return userMapper.insert(user.getName(), user.getPassword(), user.getEmail());
         } else {
             return 0;

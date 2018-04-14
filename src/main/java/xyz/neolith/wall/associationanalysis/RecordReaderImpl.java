@@ -34,9 +34,9 @@ public class RecordReaderImpl implements IRecordReader {
         Date st = null, et = null;
         try {
             //日志开始时间
-            st = df.parse("2018-03-27 14:32:45");
+            st = df.parse("2018-04-14 00:17:26");
             //日志结束时间
-            et = df.parse("2018-03-27 14:33:55");
+            et = df.parse("2018-04-14 00:18:26");
         } catch (ParseException e) {
             e.printStackTrace();
         }

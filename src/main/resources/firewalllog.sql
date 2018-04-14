@@ -36,7 +36,6 @@ CREATE TABLE `event` (
   `lastTime` datetime DEFAULT NULL,
   `isFinished` tinyint(1) DEFAULT NULL,
   `attackType` enum('sameSrcAttack','sameDestAttack','sensitivePortAccess') DEFAULT NULL,
-  `type` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1710 DEFAULT CHARSET=latin1;
 
